@@ -2,7 +2,7 @@
 
 ## Sonic Arts Ensemble
 
-![sonicarts](https://github.com/fdch/sonicarts/master/2019-20/2-spring/img/sonic_arts_ensemble.jpg)
+![sonicarts](https://github.com/fdch/sonicarts/raw/master/2019-20/2-spring/img/sonic_arts_ensemble.jpg)
 
 ### Class information
 
