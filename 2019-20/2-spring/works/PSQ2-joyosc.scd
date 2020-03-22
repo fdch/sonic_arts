@@ -501,7 +501,7 @@ s.waitForBoot{
 
   ~janalogs= { |msg, time, addr, port|
       if(msg[0].asString.beginsWith(~jaxis)) {
-          msg.postln;
+      // msg.postln;
          if(msg[1].asString == "lefty") { //L3y
         var one=(msg[2]/32767*0.5)+0.5;
         ~duratio=(1-one).linlin(0,1,0.25,4);
@@ -524,7 +524,7 @@ s.waitForBoot{
     };
    ~jbuttons= { |msg, time, addr, port|
       if(msg[0].asString.beginsWith(~jbutton)) {
-          msg.postln;
+      // msg.postln;
          if(msg[1].asString == "dpup") {
            if (msg[2]==1,{~rhy=1;~dancetime=~sixteen};);//up
         };
