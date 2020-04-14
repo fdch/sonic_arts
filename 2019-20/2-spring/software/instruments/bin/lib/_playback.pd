@@ -1,8 +1,8 @@
-#N canvas 422 360 725 363 12;
+#N canvas 167 226 725 363 12;
 #X obj 167 128 bng 15 250 50 0 playback-open playback-open-set open
 17 7 0 10 -262130 -1 -1;
 #X obj 107 118 vsl 15 128 0 127 0 0 playback-vol playback-vol-set vol
-0 -9 0 10 -204786 -1 -1 11100 1;
+0 -9 0 10 -204786 -1 -1 0 1;
 #X obj 128 126 vu 15 120 playback-vu vu -1 -8 0 8 -66577 -1 1 0;
 #X obj 167 146 bng 15 250 50 0 playback-start playback-start-set start
 17 7 0 10 -204786 -1 -1;
@@ -30,12 +30,12 @@
 #X obj 410 238 dbtorms;
 #X obj 410 264 pack f 10;
 #X obj 410 290 line~;
-#X obj 308 255 env~;
-#X obj 308 281 - 101;
-#X obj 308 307 s playback-vu;
-#X obj 549 253 print PLAYBACK;
-#X msg 562 204 stopped;
-#X msg 524 171 started;
+#X obj 330 281 env~;
+#X obj 333 307 - 101;
+#X obj 333 333 s playback-vu;
+#X obj 576 218 print PLAYBACK;
+#X msg 635 173 stopped;
+#X msg 557 175 started;
 #X connect 5 0 6 0;
 #X connect 6 0 16 0;
 #X connect 7 0 8 0;

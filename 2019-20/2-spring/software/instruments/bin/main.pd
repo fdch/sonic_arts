@@ -1,13 +1,13 @@
-#N struct 1159-point float x0 float y0 float s;
-#N struct 1160-point float x0 float y0 float s;
-#N struct 1163-point float x0 float y0 float s;
-#N struct 1164-point float x0 float y0 float s;
-#N struct 1165-point float x0 float y0 float s;
-#N struct 1166-point float x0 float y0 float s;
-#N struct 1167-point float x0 float y0 float s;
-#N struct 1168-point float x0 float y0 float s;
 #N struct 1169-point float x0 float y0 float s;
 #N struct 1170-point float x0 float y0 float s;
+#N struct 1173-point float x0 float y0 float s;
+#N struct 1174-point float x0 float y0 float s;
+#N struct 1175-point float x0 float y0 float s;
+#N struct 1176-point float x0 float y0 float s;
+#N struct 1177-point float x0 float y0 float s;
+#N struct 1178-point float x0 float y0 float s;
+#N struct 1179-point float x0 float y0 float s;
+#N struct 1180-point float x0 float y0 float s;
 #N canvas 524 49 497 312 12;
 #X declare -path ./lib -path ../rec -path ../txt -lib fd_lib;
 #X obj 23 218 cnv 15 130 30 empty empty empty 20 12 0 14 -204786 -66577
@@ -989,7 +989,7 @@ afterwards for next time), f 24;
 #X connect 47 0 44 0;
 #X restore 289 93 pd instrument-switcher;
 #X obj 328 20 fd_windows 0 2051;
-#N canvas 470 134 406 514 sample_playback 0;
+#N canvas 302 128 406 514 sample_playback 0;
 #X obj 44 15 r sample-1;
 #X obj 46 90 r sample-2;
 #X obj 44 40 _readsample kick.wav;
@@ -1005,6 +1005,10 @@ afterwards for next time), f 24;
 #X obj 182 430 s sample-2-set;
 #X obj 182 189 notein;
 #X text 230 188 <-- see helpfile;
+#X obj 232 37 _readsample clar-0.wav;
+#X obj 232 13 r sample-3;
+#X obj 234 86 r sample-4;
+#X obj 234 110 _readsample flute-0.wav;
 #X connect 0 0 2 0;
 #X connect 1 0 3 0;
 #X connect 5 0 6 0;
@@ -1014,6 +1018,8 @@ afterwards for next time), f 24;
 #X connect 9 0 10 0;
 #X connect 10 0 4 0;
 #X connect 10 1 11 0;
+#X connect 15 0 14 0;
+#X connect 16 0 17 0;
 #X restore 24 110 pd sample_playback;
 #N canvas 684 115 450 300 delay-loops 0;
 #N canvas 109 163 1048 506 read-del 0;
@@ -1025,15 +1031,15 @@ afterwards for next time), f 24;
 #X obj 86 210 line~;
 #X obj 207 287 *~;
 #X obj 94 89 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 12400 1;
+-1 -1 0 1;
 #X obj 87 155 / 127;
 #X obj 41 112 inlet~;
 #X obj 264 5 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 9300 1;
+-1 -1 0 1;
 #X obj 469 167 pack f 10;
 #X obj 469 193 line~;
 #X obj 486 80 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 12700 1;
+-1 -1 0 1;
 #X obj 484 100 / 127;
 #X obj 476 133 clip 0 0.99;
 #X obj 212 235 delread4~ mydel;
@@ -1043,12 +1049,12 @@ afterwards for next time), f 24;
 #X obj 624 180 *~ 1000;
 #X obj 635 298 *~;
 #X obj 661 51 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 1100 1;
+-1 -1 0 1;
 #X obj 661 99 / 127;
 #X obj 793 184 pack f 10;
 #X obj 793 210 line~;
 #X obj 810 97 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 9700 1;
+-1 -1 0 1;
 #X obj 808 117 / 127;
 #X obj 800 150 clip 0 0.99;
 #X obj 624 208 delread4~ mydel;
@@ -1134,7 +1140,7 @@ afterwards for next time), f 24;
 #X restore 53 193 pd read-del;
 #X obj 47 82 readsf~ 1;
 #X obj 257 80 spigot;
-#X obj 299 44 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 299 44 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 196 264 throw~ mono;
 #N canvas 0 22 450 300 rsdels 0;
@@ -1142,7 +1148,7 @@ afterwards for next time), f 24;
 #X obj 50 27 inlet~;
 #X obj 75 227 outlet~;
 #X obj 338 98 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 11000 1;
+-1 -1 0 1;
 #X obj 338 234 s vol-set;
 #X obj 152 66 t f b b b;
 #X obj 146 158 pack f f f f;
@@ -1199,7 +1205,7 @@ afterwards for next time), f 24;
 #X connect 5 0 6 0;
 #X connect 7 0 1 0;
 #X restore 25 143 pd dac __________;
-#N canvas 326 37 506 422 recording 0;
+#N canvas 229 261 506 422 recording 0;
 #X obj 59 101 catch~ rec-1;
 #X obj 157 100 catch~ rec-2;
 #X obj 17 68 r rec;
@@ -1269,7 +1275,7 @@ afterwards for next time), f 24;
 #X connect 13 0 14 0;
 #X connect 15 0 13 0;
 #X restore 25 168 pd recording ____;
-#N canvas 31 18 896 754 controls 0;
+#N canvas 42 24 896 754 controls 0;
 #X obj 16 14 cnv 15 862 300 empty thornblower-canvas thornblower 20
 12 0 14 -233017 -1 0;
 #X obj 244 28 tgl 15 0 enable-thorn enable-thorn-set enable-thorn 17
@@ -1423,7 +1429,7 @@ impulse-vol-m 0 -9 0 10 -204786 -1 -1 0 1;
 17 7 0 10 -204786 -1 -1 0 1;
 #X obj 659 401 vu 15 120 impulse-vu-m-r empty -1 -8 0 10 -66577 -1
 1 0;
-#X obj 640 343 tgl 15 0 enable-mult enable-mult-set enable-mult 17
+#X obj 626 354 tgl 15 0 enable-mult enable-mult-set enable-mult 17
 7 0 10 -257985 -1 -1 0 1;
 #X obj 16 315 cnv 15 430 430 empty solo-canvas solo 20 12 0 14 -233017
 -1 0;
@@ -1715,7 +1721,7 @@ reverb-cutoff-amt 10 8 0 10 -262144 -1 -1 4000 1;
 #X connect 21 0 6 1;
 #X connect 22 0 8 0;
 #X restore 87 528 pd selector solo;
-#X obj 578 14 cnv 15 300 80 empty pd-dsp-canvas empty 20 12 0 14 -166441
+#X obj 578 14 cnv 15 300 80 empty pd-dsp-canvas empty 20 12 0 14 -225271
 -1 0;
 #X obj 586 52 tgl 30 0 pd-dsp pd-dsp-set pd-dsp_(GUIDEBTN) 35 15 0
 15 -4034 -1 -1 0 1;
@@ -1730,7 +1736,7 @@ reverb-cutoff-amt 10 8 0 10 -262144 -1 -1 4000 1;
 #X obj 797 537 bng 15 250 50 0 stop-rec stop-rec-set STOP-REC 17 7
 0 10 -257985 -1 -1;
 #X obj 773 356 vsl 30 128 0 100 0 0 vol vol-set vol 0 -9 0 10 -204786
--1 -1 12700 1;
+-1 -1 0 1;
 #X obj 812 363 vu 15 120 vu vu -1 -8 0 10 -66577 -1 1 0;
 #X obj 199 385 vu 15 120 impulse-vu-l vu-meter -1 -8 0 10 -66577 -1
 0 0;
@@ -1752,6 +1758,10 @@ reverb-cutoff-amt 10 8 0 10 -262144 -1 -1 4000 1;
 #X obj 25 182 bng 15 250 50 0 sample-1 sample-1-set 1 17 7 0 10 -262144
 -1 -1;
 #X obj 25 204 bng 15 250 50 0 sample-2 sample-2-set 2 17 7 0 10 -262144
+-1 -1;
+#X obj 25 224 bng 15 250 50 0 sample-3 sample-3-set 3 17 7 0 10 -262144
+-1 -1;
+#X obj 25 244 bng 15 250 50 0 sample-4 sample-4-set 4 17 7 0 10 -262144
 -1 -1;
 #X connect 18 0 24 0;
 #X connect 19 0 23 0;
@@ -1780,7 +1790,7 @@ recording, f 66;
 #N canvas 0 22 450 300 playback 0;
 #X obj 29 39 r rec;
 #X obj 29 65 route start;
-#X obj 29 91 s playback-start;
+#X obj 29 151 s playback-start;
 #N canvas 0 22 455 300 inputs 0;
 #X obj 159 45 adc~ 2;
 #X obj 199 113 env~;
