@@ -1,0 +1,6 @@
+#N canvas 0 22 450 300 12;
+#X obj 39 112 s toMax;
+#X obj 39 55 inlet;
+#X obj 39 86 oscformat \$2-\$1;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
