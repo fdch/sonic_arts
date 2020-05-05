@@ -6,3 +6,7 @@ audio/
 node_modules/
 npm-debug.log
 *.env
+!2019-20/2-spring/software/instruments/rec/bell.wav
+!2019-20/2-spring/software/instruments/rec/clar-0.wav
+!2019-20/2-spring/software/instruments/rec/flute-0.wav
+!2019-20/2-spring/software/instruments/rec/kick.wav
