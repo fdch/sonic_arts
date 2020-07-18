@@ -8,9 +8,8 @@
 #N struct 1210-point float x0 float y0 float s;
 #N struct 1211-point float x0 float y0 float s;
 #N struct 1212-point float x0 float y0 float s;
-#N canvas 531 41 497 312 12;
+#N canvas 521 51 497 312 12;
 #X declare -path ./lib -path ../rec -path ../txt -lib fd_lib;
-#X declare -path ~/Documents/pd-numark;
 #X obj 23 218 cnv 15 130 30 empty empty empty 20 12 0 14 -204786 -66577
 0;
 #N canvas 0 22 450 300 meta 0;
@@ -49,7 +48,7 @@ controls \, selector;
 #X restore 26 69 pd init _________;
 #N canvas 313 167 902 580 joyosc 0;
 #X obj 15 11 tgl 15 0 joyosc joyosc-set joyosc 17 7 0 10 -204786 -1
--1 1 1;
+-1 0 1;
 #X obj 42 276 route devices notifications;
 #X obj 42 250 route joyosc;
 #X obj 45 56 r joyosc;
@@ -79,7 +78,7 @@ controls \, selector;
 #X obj 271 281 r debug;
 #X obj 395 35 r guide;
 #X obj 395 61 sel 1;
-#X obj 397 91 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 397 91 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 244 462 makefilename %s-set;
 #X msg 27 462 \; \$1-set \$2;
@@ -95,9 +94,6 @@ controls \, selector;
 #X msg 428 521 \; \$1 \$2;
 #X msg 426 402 imp-vol \, lor-vol \, fm-vol \, impulse-vol \, impulse-vol-m
 \, vol \, playback-vol \, sample-vol;
-#X obj 261 167 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 261 187 s debug;
 #X connect 1 0 10 0;
 #X connect 2 0 1 0;
 #X connect 3 0 9 0;
@@ -111,7 +107,6 @@ controls \, selector;
 #X connect 10 0 26 0;
 #X connect 11 0 23 0;
 #X connect 11 1 19 0;
-#X connect 11 1 24 0;
 #X connect 12 0 13 0;
 #X connect 13 0 14 0;
 #X connect 14 0 21 0;
@@ -124,6 +119,7 @@ controls \, selector;
 #X connect 23 0 32 0;
 #X connect 24 0 25 0;
 #X connect 26 0 11 0;
+#X connect 26 1 24 0;
 #X connect 27 0 24 1;
 #X connect 28 0 29 0;
 #X connect 29 0 30 0;
@@ -139,7 +135,6 @@ controls \, selector;
 #X connect 40 0 37 0;
 #X connect 41 0 42 0;
 #X connect 43 0 35 0;
-#X connect 44 0 45 0;
 #X restore 26 93 pd joyosc _______;
 #N canvas 427 157 499 375 instruments 0;
 #N canvas 373 98 451 308 impulse 0;
@@ -159,7 +154,7 @@ controls \, selector;
 #X floatatom 72 87 5 0 0 0 - - -;
 #X floatatom 352 59 5 0 0 0 - - -;
 #X obj 564 116 sel 1;
-#X obj 559 154 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 559 154 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 576 439 switch~;
 #X obj 512 298 r impulse-L;
@@ -272,7 +267,7 @@ controls \, selector;
 #X floatatom 96 88 5 0 0 0 - - -;
 #X floatatom 268 83 5 0 0 0 - - -;
 #X obj 454 104 sel 1;
-#X obj 449 142 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 449 142 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 382 442 switch~;
 #X obj 445 171 s impulse-R-set;
@@ -915,7 +910,7 @@ afterwards for next time), f 24;
 #X obj 16 67 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X obj 137 39 sel 1;
-#X obj 137 65 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 137 65 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 241 37 sel 1;
 #X obj 241 63 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -1225,7 +1220,7 @@ afterwards for next time), f 24;
 #X obj 394 22 r pd-dsp;
 #X msg 394 48 dsp \$1;
 #X obj 394 74 s pd;
-#X obj 15 49 clone -s 1 _dacout 2 vol;
+#X obj 15 49 clone -s 1 fd_dacout_rec 2 vol;
 #X connect 0 0 7 0;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
@@ -1234,6 +1229,8 @@ afterwards for next time), f 24;
 #X connect 7 0 1 0;
 #X restore 25 143 pd dac __________;
 #N canvas 229 261 506 422 recording 0;
+#X obj 59 101 catch~ rec-1;
+#X obj 157 100 catch~ rec-2;
 #X obj 17 68 r rec;
 #X obj 59 159 hip~ 40;
 #X obj 59 132 lop~ 13000;
@@ -1287,23 +1284,21 @@ afterwards for next time), f 24;
 #X connect 14 0 13 0;
 #X restore 35 22 pd start-rec;
 #X obj 48 336 writesf~ 2, f 30;
-#X obj 59 101 r~ rec-1;
-#X obj 157 100 r~ rec-2;
-#X connect 0 0 15 0;
-#X connect 1 0 15 0;
-#X connect 2 0 1 0;
-#X connect 3 0 4 0;
-#X connect 4 0 15 1;
-#X connect 6 0 5 0;
-#X connect 7 0 8 0;
-#X connect 9 0 6 0;
-#X connect 10 0 7 0;
-#X connect 11 0 12 0;
-#X connect 13 0 11 0;
-#X connect 16 0 2 0;
-#X connect 17 0 3 0;
+#X connect 0 0 4 0;
+#X connect 1 0 5 0;
+#X connect 2 0 17 0;
+#X connect 3 0 17 0;
+#X connect 4 0 3 0;
+#X connect 5 0 6 0;
+#X connect 6 0 17 1;
+#X connect 8 0 7 0;
+#X connect 9 0 10 0;
+#X connect 11 0 8 0;
+#X connect 12 0 9 0;
+#X connect 13 0 14 0;
+#X connect 15 0 13 0;
 #X restore 25 168 pd recording ____;
-#N canvas 46 0 823 725 controls 1;
+#N canvas 372 18 877 725 controls 0;
 #X obj 6 4 cnv 15 862 300 empty thornblower-canvas thornblower 20 12
 0 14 -233017 -1 0;
 #X obj 123 10 tgl 15 0 enable-thorn enable-thorn-set enable-thorn 17
@@ -1452,14 +1447,14 @@ afterwards for next time), f 24;
 #X obj 584 689 s impulse-mod-m;
 #X obj 724 689 s impulse-vib-m;
 #X obj 605 357 vsl 15 128 0 100 0 0 impulse-vol-m impulse-vol-m-set
-impulse-vol-m 0 -9 0 10 -204786 -1 -1 0 1;
+impulse-vol-m 0 -9 0 10 -204786 -1 -1 11200 1;
 #X obj 457 310 tgl 15 0 impulse-switch-m impulse-switch-m-set impulse-switch-m_(RCLICK)
 17 7 0 10 -204786 -1 -1 0 1;
 #X obj 649 369 vu 15 120 impulse-vu-m-r empty -1 -8 0 10 -66577 -1
 1 0;
 #X obj 616 322 tgl 15 0 enable-mult enable-mult-set enable-mult 17
 7 0 10 -257985 -1 -1 0 1;
-#X obj 6 283 cnv 15 430 430 empty solo-canvas solo 20 12 0 14 -233017
+#X obj 6 283 cnv 15 430 430 empty solo-canvas solo 20 12 0 14 -225280
 -1 0;
 #X obj 18 554 else/slider2d;
 #X obj 18 689 s impulse;
@@ -1476,35 +1471,35 @@ impulse-vol-m 0 -9 0 10 -204786 -1 -1 0 1;
 #X text 154 529 mod freq - index;
 #X text 297 529 vib speed - width;
 #X obj 219 310 tgl 15 0 enable-solo enable-solo-set enable-solo 17
-7 0 10 -257985 -1 -1 0 1;
+7 0 10 -257985 -1 -1 1 1;
 #X obj 286 498 hradio 30 1 0 7 selector selector-set selector_(dpdown)
 0 -8 0 10 -262130 -1 -1 1;
 #X obj 276 338 cnv 15 150 130 empty empty reverb 20 12 0 14 -203904
 -66577 0;
 #X obj 284 426 hsl 128 15 0 127 0 1 reverb-cutoff reverb-cutoff-set
-reverb-cutoff 10 8 0 10 -262144 -1 -1 6900 1;
+reverb-cutoff 10 8 0 10 -262144 -1 -1 12600 1;
 #X obj 284 388 hsl 128 15 0 127 0 1 reverb-volume reverb-volume-set
-reverb-volume 10 8 0 10 -262144 -1 -1 12700 1;
+reverb-volume 10 8 0 10 -262144 -1 -1 11500 1;
 #X obj 284 407 hsl 128 15 0 127 0 1 reverb-feedback reverb-feedback-set
 reverb-feedback 10 8 0 10 -262144 -1 -1 12700 1;
 #X obj 284 370 hsl 128 15 0 127 0 0 reverb-amount reverb-amount-set
 reverb-amount 10 8 0 10 -262144 -1 -1 12700 1;
 #X obj 284 444 hsl 128 15 0 127 0 1 reverb-cutoff-amt reverb-cutoff-amt-set
-reverb-cutoff-amt 10 8 0 10 -262144 -1 -1 1500 1;
+reverb-cutoff-amt 10 8 0 10 -262144 -1 -1 2400 1;
 #X obj 319 133 vu 15 120 imp-vu-l vu-meter -1 -8 0 10 -66577 -1 0 0
 ;
 #X obj 295 121 vsl 15 128 0 100 0 0 imp-vol imp-vol-set imp-vol 0 -9
-0 10 -204786 -1 -1 7900 1;
+0 10 -204786 -1 -1 0 1;
 #X obj 339 133 vu 15 120 imp-vu-r empty -1 -8 0 10 -66577 -1 1 0;
 #X obj 394 131 vu 15 120 lor-vu-l vu-meter -1 -8 0 10 -66577 -1 0 0
 ;
 #X obj 370 119 vsl 15 128 0 100 0 0 lor-vol lor-vol-set lor-vol 0 -9
-0 10 -204786 -1 -1 11811 1;
+0 10 -204786 -1 -1 11300 1;
 #X obj 414 131 vu 15 120 lor-vu-r empty -1 -8 0 10 -66577 -1 1 0;
 #X obj 470 131 vu 15 120 fm-vu-l vu-meter -1 -8 0 10 -66577 -1 0 0
 ;
 #X obj 446 119 vsl 15 128 0 100 0 0 fm-vol fm-vol-set fm-vol 0 -9 0
-10 -204786 -1 -1 11684 1;
+10 -204786 -1 -1 12700 1;
 #X obj 490 131 vu 15 120 fm-vu-r empty -1 -8 0 10 -66577 -1 1 0;
 #N canvas 290 57 685 466 global 0;
 #X obj 97 114 t b f;
@@ -1748,12 +1743,12 @@ reverb-cutoff-amt 10 8 0 10 -262144 -1 -1 1500 1;
 #X connect 21 0 6 1;
 #X connect 22 0 8 0;
 #X restore 77 496 pd selector solo;
-#X obj 568 4 cnv 15 300 80 empty pd-dsp-canvas empty 20 12 0 14 -225271
+#X obj 568 4 cnv 15 300 80 empty pd-dsp-canvas empty 20 12 0 14 -166441
 -1 0;
 #X obj 576 42 tgl 30 0 pd-dsp pd-dsp-set pd-dsp_(GUIDEBTN) 35 15 0
-15 -4034 -1 -1 1 1;
+15 -4034 -1 -1 0 1;
 #X obj 577 7 tgl 30 0 joyosc joyosc-set joyosc 35 15 0 14 -262130 -1
--1 1 1;
+-1 0 1;
 #X text 657 12 <-- if you have a controller;
 #X obj 189 353 vu 15 120 impulse-vu-l vu-meter -1 -8 0 10 -66577 -1
 0 0;
@@ -1767,7 +1762,7 @@ reverb-cutoff-amt 10 8 0 10 -262144 -1 -1 1500 1;
 14 -262130 -1 0;
 #X obj 749 113 _playback;
 #X obj 516 125 vsl 15 128 0 100 0 0 sample-vol sample-vol-set sample-vol
-0 -9 0 10 -204786 -1 -1 9300 1;
+0 -9 0 10 -204786 -1 -1 8100 1;
 #N canvas 69 85 687 589 sequencer 0;
 #X obj 255 91 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
@@ -1794,7 +1789,7 @@ reverb-cutoff-amt 10 8 0 10 -262144 -1 -1 1500 1;
 #X obj 275 128 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 201 303 f;
-#X obj 295 128 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 295 128 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 231 303 f;
 #X obj 315 128 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -1893,28 +1888,28 @@ reverb-cutoff-amt 10 8 0 10 -262144 -1 -1 1500 1;
 #X obj 195 432 sel 1;
 #X obj 225 432 sel 1;
 #X obj 326 416 f;
-#X obj 175 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 175 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 356 416 f;
-#X obj 195 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 195 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 386 416 f;
-#X obj 215 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 215 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 416 416 f;
-#X obj 235 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 235 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 446 416 f;
-#X obj 255 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 255 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 476 416 f;
-#X obj 275 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 275 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 506 416 f;
-#X obj 295 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 295 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 536 416 f;
-#X obj 315 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 315 182 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 326 442 sel 1;
 #X obj 356 442 sel 1;
@@ -1925,7 +1920,7 @@ reverb-cutoff-amt 10 8 0 10 -262144 -1 -1 1500 1;
 #X obj 506 442 sel 1;
 #X obj 536 442 sel 1;
 #X obj 275 91 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 44 256;
+-262144 -1 -1 354 256;
 #X obj 368 13 loadbang;
 #X msg 368 39 120;
 #X obj 164 361 t a;
@@ -2104,29 +2099,13 @@ reverb-cutoff-amt 10 8 0 10 -262144 -1 -1 1500 1;
 #X obj 787 505 bng 15 250 50 0 stop-rec stop-rec-set STOP-REC 17 7
 0 10 -257985 -1 -1;
 #X obj 763 324 vsl 30 128 0 100 0 0 vol vol-set vol 0 -9 0 10 -204786
--1 -1 10033 1;
+-1 -1 0 1;
 #X obj 802 331 vu 15 120 vu vu -1 -8 0 10 -66577 -1 1 0;
 #X text 715 481 start -->;
 #X obj 576 88 tgl 30 0 mic-onoff mic-onoff-set mic-onoff 35 15 0 15
 -258113 -1 -1 0 1;
 #X obj 688 99 nbx 3 14 -1e+37 1e+37 0 0 mic-env mic-env-set mic-env
 0 -8 0 10 -262144 -1 -1 0 256;
-#X obj 879 284 tgl 15 0 aoo aoo-set aoo 17 7 0 10 -204786 -1 -1 0 1
-;
-#X obj 881 304 tgl 15 0 aoo-start aoo-start-set aoo-start 17 7 0 10
--262144 -1 -1 0 1;
-#X obj 881 341 vsl 15 128 0 127 0 0 aoo-vol aoo-vol-set aoo-vol 0 -9
-0 10 -262144 -1 -1 10300 1;
-#X obj 899 345 vu 15 120 aoo-vu empty -1 -8 0 10 -66577 -1 0 0;
-#X obj 919 345 vu 15 120 aoo-vu-2 empty -1 -8 0 10 -66577 -1 0 0;
-#X obj 878 231 bng 15 250 50 0 peers peers-set peers 17 7 0 10 -262144
--1 -1;
-#X obj 878 251 bng 15 250 50 0 latency latency-set latency 17 7 0 10
--262144 -1 -1;
-#X obj 878 211 tgl 15 0 compression compression-set compression 17
-7 0 10 -262144 -1 -1 0 1;
-#X obj 502 74 tgl 15 0 debug debug-set debug 17 7 0 10 -262144 -1 -1
-0 1;
 #X connect 18 0 24 0;
 #X connect 19 0 23 0;
 #X connect 22 0 19 0;
@@ -2236,164 +2215,3 @@ recording, f 66;
 #X connect 7 0 6 0;
 #X connect 8 0 9 0;
 #X restore 258 156 pd mic;
-#N canvas 220 59 645 461 aoo 0;
-#X obj 16 236 pd~ -ninsig 2 -noutsig 2;
-#X obj 16 262 print;
-#X obj 147 377 dac~;
-#X obj 18 21 r~ rec-1;
-#X obj 158 21 r~ rec-2;
-#X msg 205 195 pd~ stop;
-#X obj 177 48 env~;
-#X floatatom 177 74 5 0 0 0 - - -;
-#X obj 30 44 env~;
-#X floatatom 30 70 5 0 0 0 - - -;
-#X obj 266 16 r aoo;
-#X obj 266 42 sel 0 1;
-#X obj 300 233 r aoo-start;
-#X msg 300 259 connect-set \$1 \, start \$1;
-#X msg 122 130 hostname symbol vrr.iem.at \, port 7077 \, username
-symbol fede \, group_join symbol accadosu \, compression-set 1 \, verbose-set
-0 \, bufsize-set 140;
-#X msg 379 40 \; aoo-start-set 1;
-#X obj 289 67 t a b b;
-#N canvas 0 22 450 300 vu 0;
-#X floatatom 141 26 5 0 50 0 - #0-decay-speed-init -;
-#X obj 141 51 / 10;
-#X obj 63 53 abs~;
-#X obj 75 162 metro 22;
-#X obj 75 110 loadbang;
-#X msg 75 135 1;
-#X obj 63 185 snapshot~;
-#X obj 63 210 rmstodb;
-#X obj 109 271 - 88;
-#X obj 63 241 moses 1;
-#X msg 63 271 -100;
-#X obj 63 80 slop~ 0 0 0 0 1e+09;
-#X obj 240 35 loadbang;
-#X msg 240 61 20;
-#X obj 198 209 s aoo-vu;
-#X obj 50 15 inlet~;
-#X obj 275 164 outlet~;
-#X connect 0 0 1 0;
-#X connect 1 0 11 3;
-#X connect 2 0 11 0;
-#X connect 3 0 6 0;
-#X connect 4 0 5 0;
-#X connect 5 0 3 0;
-#X connect 6 0 7 0;
-#X connect 7 0 9 0;
-#X connect 8 0 14 0;
-#X connect 9 0 10 0;
-#X connect 9 1 8 0;
-#X connect 10 0 14 0;
-#X connect 11 0 6 0;
-#X connect 12 0 13 0;
-#X connect 13 0 1 0;
-#X connect 15 0 2 0;
-#X connect 15 0 16 0;
-#X restore 208 290 pd vu;
-#N canvas 0 22 450 300 vu 0;
-#X floatatom 141 26 5 0 50 0 - #0-decay-speed-init -;
-#X obj 141 51 / 10;
-#X obj 63 53 abs~;
-#X obj 75 162 metro 22;
-#X obj 75 110 loadbang;
-#X msg 75 135 1;
-#X obj 63 185 snapshot~;
-#X obj 63 210 rmstodb;
-#X obj 109 271 - 88;
-#X obj 63 241 moses 1;
-#X msg 63 271 -100;
-#X obj 63 80 slop~ 0 0 0 0 1e+09;
-#X obj 240 35 loadbang;
-#X msg 240 61 20;
-#X obj 50 15 inlet~;
-#X obj 198 209 s aoo-vu-2;
-#X obj 50 41 outlet~;
-#X connect 0 0 1 0;
-#X connect 1 0 11 3;
-#X connect 2 0 11 0;
-#X connect 3 0 6 0;
-#X connect 4 0 5 0;
-#X connect 5 0 3 0;
-#X connect 6 0 7 0;
-#X connect 7 0 9 0;
-#X connect 8 0 15 0;
-#X connect 9 0 10 0;
-#X connect 9 1 8 0;
-#X connect 10 0 15 0;
-#X connect 11 0 6 0;
-#X connect 12 0 13 0;
-#X connect 13 0 1 0;
-#X connect 14 0 2 0;
-#X connect 14 0 16 0;
-#X restore 258 290 pd vu;
-#X obj 208 316 *~;
-#X obj 258 316 *~;
-#X obj 335 297 r aoo-vol;
-#X obj 335 323 dbtorms;
-#X obj 335 349 pack f 10;
-#X obj 335 375 line~;
-#X msg 117 102 pd~ start -nogui ~/Documents/AccadAoo/bin/ezaoo.pd;
-#X obj 500 248 r peers;
-#X obj 499 300 r latency;
-#X msg 456 206 peers bang;
-#X msg 499 326 latency bang;
-#X msg 436 375 compression-set \$1;
-#X obj 462 414 r compression;
-#X msg 51 326 bufsize-set 200;
-#X obj 517 12 r y;
-#X obj 517 38 ==;
-#X obj 517 64 s aoo-start-set;
-#X msg 214 389 verbose 0;
-#X connect 0 0 1 0;
-#X connect 0 1 17 0;
-#X connect 0 2 18 0;
-#X connect 3 0 0 0;
-#X connect 3 0 8 0;
-#X connect 4 0 0 1;
-#X connect 4 0 6 0;
-#X connect 5 0 0 0;
-#X connect 6 0 7 0;
-#X connect 8 0 9 0;
-#X connect 10 0 11 0;
-#X connect 11 0 5 0;
-#X connect 11 1 16 0;
-#X connect 12 0 13 0;
-#X connect 13 0 0 0;
-#X connect 14 0 0 0;
-#X connect 16 0 15 0;
-#X connect 16 1 14 0;
-#X connect 16 2 25 0;
-#X connect 17 0 19 0;
-#X connect 18 0 20 0;
-#X connect 19 0 2 0;
-#X connect 20 0 2 1;
-#X connect 21 0 22 0;
-#X connect 22 0 23 0;
-#X connect 23 0 24 0;
-#X connect 24 0 19 1;
-#X connect 24 0 20 1;
-#X connect 25 0 0 0;
-#X connect 26 0 28 0;
-#X connect 27 0 29 0;
-#X connect 28 0 0 0;
-#X connect 29 0 0 0;
-#X connect 30 0 0 0;
-#X connect 31 0 30 0;
-#X connect 32 0 0 0;
-#X connect 33 0 34 0;
-#X connect 34 0 35 0;
-#X connect 36 0 0 0;
-#X restore 23 266 pd aoo;
-#N canvas 451 45 714 563 numark 1;
-#X obj 29 24 declare -path ~/Documents/pd-numark;
-#X obj 12 57 pd-numark;
-#X obj 428 57 _setter c-13 impulse-vol;
-#X obj 428 87 _setter c-14 impulse-vol-m;
-#X obj 428 119 _setter c-20 imp-vol;
-#X obj 428 145 _setter c-21 lor-vol;
-#X obj 428 171 _setter c-15 fm-vol;
-#X obj 428 200 _setter c-12 vol;
-#X obj 432 229 _setter c-9 aoo-vol;
-#X restore 259 186 pd numark;
